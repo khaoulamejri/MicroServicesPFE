@@ -1,0 +1,24 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/user/getUser",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "44307"
+        }
+      ],
+      "UpstreamPathTemplate": "/getUser",
+      "Key": "User"
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "TestKey",
+      //  "AllowedScopes": []
+      //}
+    }
+    
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:44338/"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/Devise/GetAllDevise",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50041
+        }
+      ],
+      "UpstreamPathTemplate": "/GetAllDevise"
+      //"LoadBalancerOptions": {
+      //  "Type": "LeastConnection"
+      //}
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:32418"
+  }
+}

@@ -1,0 +1,19 @@
+﻿using NoteDeFrais.Data.Infrastructure;
+using NoteDeFrais.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NoteDeFrais.Data.Repositories
+{
+    public class TypeOrdreMissionRepository : RepositoryBase<TypeOrdreMission>, ITypeOrdreMissionRepository
+    {
+        public TypeOrdreMissionRepository(IDatabaseFactory dbFactory) : base(dbFactory) { }
+    }
+    public interface ITypeOrdreMissionRepository : IRepository<TypeOrdreMission>
+    {
+
+    }
+}

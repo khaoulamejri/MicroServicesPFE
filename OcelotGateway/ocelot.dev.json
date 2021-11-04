@@ -1,0 +1,113 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Devise/GetAllDevise",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50041
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Devise/GetAllDevise",
+      "Key": "Devise"
+    },
+    {
+      "DownstreamPathTemplate": "/api/Departement/GetListDepartement",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50041
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Departement/GetListDepartement",
+      "UpstreamHttpMethod": [ "Get" ],
+      "Key": "Departement",
+      "FileCacheOptions": {
+        "TtlSeconds": 600, // Time to Live
+        "Region": "fee-calc" // Cache name
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Delegation/GetAllDelegations",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50010
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Delegation/GetAllDelegations",
+      "Key": "Delegation",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Seuil/GetAllseuils",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50010
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Seuil/GetAllseuils",
+      "Key": "Seuil",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Companies/GetAllCompany",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 50087
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Companies/GetAllCompany",
+      "UpstreamHttpMethod": [ "Get" ],
+      "Key": "Company",
+      "RateLimitOptions": {
+        "ClientWhitelist": [], // array of clients not effected by rate limiting
+        "EnableRateLimiting": true,
+        "Period": "1m", // time period limit applies for e.g. 1s, 1m, 1h, 1d etc 
+        "PeriodTimespan": 60, // retry after certain number of seconds
+        "Limit": 5 // number of requests in given period
+        //"QuotaExceededMessage" custom message to client for quota exceeded
+        //"HttpStatusCode" custom http status code
+      },
+      "FileCacheOptions": {
+        "TtlSeconds": 600,
+        "Region": "form-engine"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+    }
+  ],
+  "Aggregates": [
+    {
+      "RouteKeys": [
+        "Departement",
+        "Company"
+      ],
+      "UpstreamPathTemplate": "/api/Depar"
+      //"Aggregator": "LoadCustomerOrdersAggregator"
+      //"Aggregator": "FakeDefinedAggregator"
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5081"
+  }
+}
